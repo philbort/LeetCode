@@ -2,7 +2,8 @@
 
 338. Counting Bits
 
-Given a non negative integer number num. For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1's in their binary representation and return them as an array.
+Given a non negative integer number num. 
+For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1's in their binary representation and return them as an array.
 
 Example:
 For num = 5 you should return [0,1,1,2,1,2].
@@ -19,21 +20,19 @@ You should make use of what you have produced already.
 */
 
 class Solution {
-
 public:
-	
     vector<int> countBits(int num) {
-        vector<int> result(num+1);
-        for(int i = 0; i <= num; i++)
+        
+        // Initialize everything to zeros
+        vector<int> result(num+1,0);
+        
+        for(int i = 1; i <= num; i++)
         {
-            int tmp = i;
-            int cnt = 0;
-            while(tmp)
-            {
-                tmp = tmp&(tmp - 1);
-                cnt++;
-            }
-            result[i] = cnt;
+            /* Starts with 1, every number has 
+               1 bit more than the bits of its
+               1 bit less number
+            */
+            result[i] = result[i&(i-1)] + 1;
         }
         return result;
     }

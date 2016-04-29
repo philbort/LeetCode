@@ -32,23 +32,20 @@ public:
 
     ListNode* oddEvenList(ListNode* head) {
 
-    	if ( !head || !head->next )
+    	if (!head || !head->next || !head->next->next)
     		return head;
 
     	ListNode* odd = head;
     	ListNode* even = head->next, evenhead = head->next;
-    	while(odd->next || even->next)
-    	odd->next = even->next;
-    	even->next = odd->next;
-    	if (odd->next)
-    		odd = odd->next;
-    	if (even->next)
-    		even = even->next;
-
-
-
-
-
+    	while(odd->next && even->next)
+    	{
+	    	odd->next = even->next;
+	    	odd = odd->next;
+	    	even->next = odd->next;
+	    	even = even->next;
+		}
+		odd->next = evenhead;
+		return head;
 	}
 
 }

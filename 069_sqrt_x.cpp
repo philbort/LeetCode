@@ -18,7 +18,7 @@ public:
 
         while( fabs(result * result - x) > 0.1 )
         {
-                result = (result + x/result) / 2;
+                result = (result + x/result) / 2;	// Newton iteration
         }
         return (int) result;
     }

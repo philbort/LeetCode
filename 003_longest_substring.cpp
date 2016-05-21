@@ -32,7 +32,9 @@ public:
         int maxLen = 0, start = -1;
         
         for (int i = 0; i < s.size(); i++) {
-            // char can be used for indexing directly
+            /* char can be used for indexing directly
+               since we included the entire ascii table
+            */
             if( dict[s[i]] > start)
                 start= dict[s[i]];
             dict[s[i]] = i;

@@ -1,3 +1,4 @@
+
 /*
 
 15. 3Sum
@@ -19,13 +20,16 @@ The solution set must not contain duplicate triplets.
 class Solution {
 
 public:
-	
+
     vector<vector<int>> threeSum(vector<int>& nums) {
-        
+
         vector<vector<int>> result;
+        if(nums.empty())    return result;
+
         sort(nums.begin(), nums.end());
         
-        for (int first = 0; first < nums.size(); first++)
+        // -2 to have two more values on the right side
+        for (int first = 0; first < nums.size() - 2; first++)
         {
             /* Second and third are both bigger than 
                or equal to the first one. If the first

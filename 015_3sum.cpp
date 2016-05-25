@@ -71,7 +71,10 @@ public:
                         third--;
                 }
             }
-            // skip the same values for third
+            /* skip the same values for third,have to move the first 
+               till we couldn't find a second and a third
+               think as S = {0,0,0,0,0,0,0,0}
+            */ 
             while (first < nums.size() - 1 && 
                    nums[first] == nums[first+1])
                 first++;

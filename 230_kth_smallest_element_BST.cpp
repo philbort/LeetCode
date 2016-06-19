@@ -24,20 +24,23 @@ How would you optimize the kthSmallest routine?
  */
 
 class Solution {
+    
 public:
+    // Inorder traversal
     int kthSmallest(TreeNode* root, int k) {
         vector<int> a;
-        inorderTraversal(root, a);
+        inorderTraversal(root, a, k);
         return a[k-1];
     }
 private:
-    void inorderTraversal(TreeNode* root, vector<int> &a)
+    void inorderTraversal(TreeNode* root, vector<int> &a, int k)
     {
-        if(!root)
+        // Stop the traversal when we reach the kth element
+        if(!root || a.size() == k)
             return;
-        inorderTraversal(root->left, a);
+        inorderTraversal(root->left, a, k);
         a.push_back(root->val);
-        inorderTraversal(root->right,a);
+        inorderTraversal(root->right,a, k);
         return;
     }
 };

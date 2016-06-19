@@ -39,21 +39,31 @@ After calling your function, the tree should look like:
 */
 
 
+/**
+ * Definition for binary tree with next pointer.
+ * struct TreeLinkNode {
+ *  int val;
+ *  TreeLinkNode *left, *right, *next;
+ *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
+ * };
+ */
+ 
 class Solution {
     
 public:
-
+    // Note the default next is pointed at NULL
     void connect(TreeLinkNode *root) {
         if(!root || !root->left)  return;
         helper(root->left, root->right);
     }
-
-    void helper(TreeLinkNode* a, TreeLinkNode* b){
-        a->next=b;
-        if(a->left){
-            helper(a->left, a->right);
-            helper(a->right, b->left);
-            helper(b->left, b->right);
+    
+private:
+    void helper(TreeLinkNode* leftNode, TreeLinkNode* rightNode){
+        leftNode->next=rightNode;
+        if(leftNode->left){
+            helper(leftNode->left, leftNode->right);
+            helper(leftNode->right, rightNode->left);
+            helper(rightNode->left, rightNode->right);
         }
     }
 };

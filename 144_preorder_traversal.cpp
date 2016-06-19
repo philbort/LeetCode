@@ -25,31 +25,36 @@ return [1,2,3].
  * };
  */
 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+
 class Solution {
 
 public:
-
     vector<int> preorderTraversal(TreeNode* root) {
-
-        if(!root)
-            return vector<int>();
-
-        vector<int> ans;
-        stack<TreeNode*> nodes;
-        
-        nodes.push(root);
-
-        while ( !nodes.empty() )
+        vector<int> result;
+        if(!root)   return result;
+        stack<TreeNode*> s;
+        s.push(root);
+        while ( !s.empty() )
         {
-            TreeNode* current = nodes.top();
-            ans.push_back(current->val);
-            nodes.pop();
+            TreeNode* current = s.top();
+            result.push_back(current->val);
+            s.pop();
+            // Do the right side first since it's stack
             if(current->right)
-                nodes.push(current->right);
+                s.push(current->right);
             if(current->left)
-                nodes.push(current->left);
+                s.push(current->left);
         }
-        return ans;
+        return result;
     }
 };
 

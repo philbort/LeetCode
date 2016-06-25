@@ -14,13 +14,11 @@ Note that 1 is typically treated as an ugly number.
 class Solution {
 	
 public:
+
     int nthUglyNumber(int n) {
-        if (n < 1)
-            return 0;
-        if (n == 1)
-            return 1;
-        vector<int> UglyNumber;
-        UglyNumber.push_back(1);
+        
+        vector<int> UglyNumber(n);
+        UglyNumber[0] = 1;
         int Number2 = 0, Number3 = 0, Number5 = 0;
         int num;
         for (int i = 1; i < n; i++)
@@ -32,8 +30,8 @@ public:
                 Number3++;
             if ( num == UglyNumber[Number5]*5)
                 Number5++;
-            UglyNumber.push_back(num);
+            UglyNumber[i] = num;
         }
-        return UglyNumber.back();
+        return UglyNumber[n-1];
     }
 };

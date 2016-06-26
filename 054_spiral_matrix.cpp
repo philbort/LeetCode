@@ -24,6 +24,7 @@ public:
         
         if (matrix.empty()) return vector<int> ();
         int m = matrix.size(), n = matrix[0].size();
+        // Pre-allocate the known size is faster than push_back
         vector<int> result(m*n);
         
         int left = 0, right = n - 1, up = 0, down = m - 1;

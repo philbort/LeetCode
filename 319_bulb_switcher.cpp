@@ -28,14 +28,20 @@ class Solution {
 public:
 	
     int bulbSwitch(int n) {
-
+	// Starts with 0 since n can be 0
         int res = 0;
-        // Basically find out how many squared
-        // numbers smaller and equal to n
+        /* find out how many perfect squared
+           numbers smaller and equal to n.
+           These numbers have odd number of 
+           divisors. So they will be on eventually.
+           (e.g., 9: 1(on), 3(off), 9(on); 
+                  8: 1(on), 2(off), 4(on), 8(off).
+  	*/
         while( res * res <= n)
         {
             res++;
         }
+        // -1 here since we started with 0
         return (res - 1);
     }
 };

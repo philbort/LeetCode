@@ -16,11 +16,16 @@ Could you solve it with constant space complexity? (Note: The output array does 
 
 class Solution {
 public:
+    /* A left to right pass of everything on the left side
+       plus a right to left pass of everything on the right
+       side
+    */
     vector<int> productExceptSelf(vector<int>& nums) {
         
         int n = nums.size();
+        if(n == 0)  return vector<int> ();
         
-        // Initialize the output
+        // Initialize the output to 1
         vector<int> res(n,1);
         
         // First pass, multiply everything on the left 

@@ -13,6 +13,9 @@ class Solution {
 public:
     int trailingZeroes(int n) {
         int m = 0;
+        /* There are always more 2s
+           than 5s, so only count 5s.
+   	*/
         while(n > 0)
         {
             n/=5;
@@ -21,3 +24,11 @@ public:
         return m;
     }
 };
+
+/* Fancy recursion:
+
+int trailingZeroes(int n) {
+return n == 0 ? 0 : n / 5 + trailingZeroes(n / 5);
+}
+
+*/

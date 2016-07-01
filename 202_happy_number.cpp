@@ -25,7 +25,9 @@ class Solution {
 public:
 
     bool isHappy(int n) {
-        
+        /* This is the same as detecting
+           cycle in a linked list.
+        */
         int slow = n, fast = digitSum(n);
         while (slow != fast)
         {

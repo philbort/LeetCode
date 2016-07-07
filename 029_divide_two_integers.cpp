@@ -18,7 +18,8 @@ public:
               return INT_MAX;
         // Get the sign of the result
         int sign = ((dividend < 0)^(divisor < 0)) ? -1 : 1;
-        // Treat them as positive integers
+        // Treat them as positive integers, and they may be
+        // INT_MIN, so use long long to avoid overflow
         long long dvd = labs(dividend);
         long long dvs = labs(divisor);
         int result = 0;
@@ -30,9 +31,11 @@ public:
                 temp <<= 1;
                 multiple <<= 1;
             }
+            // Can still use - operator
             dvd -= temp;
             result += multiple;
         }
-        return sign*result;
+        // Cannot use * operator
+        return sign == 1? result : -result;
     }
 };

@@ -30,7 +30,7 @@ public:
             
             if(nums[mid] >= nums[left] && nums[mid] >= nums[right])
                 left = mid + 1;
-            else if(nums[mid] <= nums[left] && nums[mid] <= nums[right])
+            else // if(nums[mid] <= nums[left] && nums[mid] <= nums[right])
                 right = mid;
         }
         return nums[left];

@@ -15,15 +15,14 @@ It doesn't matter what you leave beyond the new length.
 */
 
 class Solution {
-
+    
 public:
-
     int removeDuplicates(vector<int>& nums) {
-        int n = nums.size();
-        if (!n) 
-            return n;
+        int size = nums.size();
+        if (size < 2) 
+            return size;
         int cnt = 1;
-        for (int i = 1; i < n; i++)
+        for (int i = 1; i < size; i++)
         {
             if( nums[i] != nums[cnt-1])
                 nums[cnt++] = nums[i];

@@ -1,3 +1,4 @@
+
 /*
 
 78. Subsets
@@ -36,6 +37,8 @@ public:
         
         */
         for(int i = 0; i < nums.size(); i++) {
+            // Need to declare the size here since
+            // it changes in the loop below
             int m = result.size();
             for(int j = 0; j < m; j++) {
                 vector<int> current = result[j];

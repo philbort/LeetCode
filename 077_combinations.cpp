@@ -22,7 +22,8 @@ class Solution {
 public:
     vector<vector<int>> combine(int n, int k) {
         vector<vector<int>> result;
-        vector<int> cur;
+        // Pre-allocate the memory for k since we know the size
+        vector<int> cur(k);
         helper(1, n, k, cur, result);
         return result;
     }
@@ -33,9 +34,15 @@ private:
             return;
         }
         for(int i = start; i <= end; i++) {
-            cur.push_back(i);
+            /* instead of cur.push_back(i)
+               and cur.pop_back();
+               just do this since we know 
+               the size:
+            */
+            // cur.push_back(i);
+            cur[cur.size() - k] = i;
             helper(i+1, end, k-1, cur, result);
-            cur.pop_back();
+            // cur.pop_back();
         }
         
     }

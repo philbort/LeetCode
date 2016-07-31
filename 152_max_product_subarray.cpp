@@ -20,10 +20,15 @@ public:
         
         for (int i = 1; i < nums.size(); i++)
         {
+            // If the current number is < 0, we need to multiple it by the current
+            // min to get a max number
             if(nums[i] < 0)
                 swap(current_max_sum_so_far, current_min_sum_so_far);
-                
+            
+            // Other than the situation above, we do the regular tracking just 
+            // like the buy/sell stock problem     
             current_max_sum_so_far = max(current_max_sum_so_far*nums[i], nums[i]);
+            // For the reason above, we have to track current min all the time
             current_min_sum_so_far = min(current_min_sum_so_far*nums[i], nums[i]);
             
             max_sum_so_far = max(current_max_sum_so_far, max_sum_so_far);

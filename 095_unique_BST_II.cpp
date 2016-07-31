@@ -24,13 +24,62 @@ Given n = 3, your program should return all 5 unique BST's shown below.
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
- 
 class Solution {
 public:
     vector<TreeNode*> generateTrees(int n) {
         if(!n)  return vector<TreeNode*>();
+        vector<TreeNode*> dp(1, NULL);
+        /* The idea is: the new number is bigger than
+           all the old numbers. So there are two options:
+           1. if the new number is the root, add all
+           the past trees to its left
+           2. it the new number is not the root, add new
+           number to every right sub-tree placeof the past
+           trees and link all the right child to its left
+        
+        */
+        for (int i = 1; i <= n; i++) {
+            vector<TreeNode*> current;
+            for (int j = 0; j < dp.size(); j++){
+                // the new number is the root
+                TreeNode* newroot = new TreeNode(i);
+                TreeNode* oldroot = clone(dp[j]);
+                newroot->left = oldroot;
+                current.push_back(newroot);
+                // the new number is not the root
+                TreeNode* p = oldroot;
+                while(p) {
+                    
+                    TreeNode* r = p->right;
+                    TreeNode* newnode = new TreeNode(i);
+                    p->right = newnode;
+                    newnode->left = r;
+                    current.push_back(clone(oldroot));
+                    p->right = r;
+                    p = p->right;
+                }
+            }
+            dp = current;
+        }
+        return dp;
+    }
+private:
+    TreeNode* clone(TreeNode* root) {
+        if(!root)  return NULL;
+        TreeNode* newroot = new TreeNode(root->val);
+        newroot->left = clone(root->left);
+        newroot->right = clone(root->right);
+        return newroot;
+    }
+};
+
+/*
+
+vector<TreeNode*> generateTrees(int n) {
+        if(!n)  return vector<TreeNode*>();
         return helper(1, n);
     }
+    
 private:
     vector<TreeNode*> helper(int min, int max) {
         vector<TreeNode*> result;
@@ -56,4 +105,5 @@ private:
         }
         return result;
     }
-};
+    
+*/

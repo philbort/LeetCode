@@ -20,8 +20,10 @@ public:
     void sortColors(vector<int>& nums) {
         int redInd = 0, blueInd = nums.size() - 1;
         for (int i = 0; i <= blueInd; i++) {
+            // swap all the blues to the end
             while (nums[i] == 2 && i < blueInd)
                 swap(nums[i], nums[blueInd--]);
+            // swap all the reds to the beginning
             while (nums[i] == 0 && i > redInd)
                 swap(nums[i],nums[redInd++]);
 

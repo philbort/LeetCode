@@ -13,25 +13,35 @@ For example,
 class Solution {
 public:
     vector<vector<int>> permute(vector<int>& nums) {
-    	vector<vector<int>> result;
-    	if (nums.empty())   return result;
-    	permutation(nums, 0, result);
-    	return result;
+        vector<vector<int>> result;
+        if (nums.empty())   return result;
+        permutation(nums, 0, result);
+        return result;
     }
 private:
-	void permutation( vector<int>& nums, int ind, vector<vector<int>>& result) {
-		if (ind == nums.size() - 1)
-		{
-			result.push_back(nums);
-			return;
-		}
-		for (int i = ind; i < nums.size(); i++)
-		{
-			std::swap(nums[ind], nums[i]);
-			permutation(nums, ind+1, result);
-			std::swap(nums[i], nums[ind]);
-		}
-	}
+    void permutation( vector<int>& nums, int ind, vector<vector<int>>& result) {
+        if (ind == nums.size() - 1)
+        {
+            result.push_back(nums);
+            return;
+        }
+        for (int i = ind; i < nums.size(); i++)
+        {
+            /* always starts with i = ind, so 
+               we are swapping the same number
+               to itself, otherwise for (1,2,3),
+               we won't be able to output (1,2,3)
+               which has no swaps, or has only swaps
+               with itself.
+               The following video gives a good 
+               graphic explaination to it:
+               https://www.youtube.com/watch?v=KBHFyg2AcZ4
+            */
+            std::swap(nums[ind], nums[i]);
+            permutation(nums, ind+1, result);
+            std::swap(nums[ind], nums[i]);
+        }
+    }
 };
 
 /*

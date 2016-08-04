@@ -19,6 +19,15 @@ public:
         return result;
     }
 private:
+    /* We can also not passing by reference for nums,
+       then we do not need the second swap.
+       Both works, but passing by reference is faster,
+       since it saves the time of copying and pasting
+       the nums array.
+       Once there is duplicates in nums, passing by 
+       value is much easier to implement.
+       See "permutation II"
+    */
     void permutation( vector<int>& nums, int ind, vector<vector<int>>& result) {
         if (ind == nums.size() - 1)
         {

@@ -35,11 +35,8 @@ private:
 			return;
 		}
 		for (int i = ind; i < nums.size(); i++) {
-		    // We do the regular check
-		    if ( i != ind && nums[ind] == nums[i])
-		        continue;
-		    // Then we make sure the current number
-		    // hasn't been swapped before.
+		    // Instead of only checking nums[ind] != nums[i]
+		    // no we have to check every number before i.
             bool duplicate = false;
 	        if(i != ind){
 	            for(int j = ind; j < i; j++) {
@@ -76,4 +73,43 @@ private:
 			permutation(nums, ind+1, result);
 		}
 	}
+*/
+
+/* Very cool method using hash table
+
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        unordered_map<int, int> map;
+        for (int i = 0; i < nums.size(); i++) {
+            if(map.find(nums[i]) == map.end())
+                map[nums[i]] = 1;
+            else
+                map[nums[i]]++;
+        }
+    	vector<vector<int>> result;
+    	vector<int> current;
+    	permutation(nums.size(), current, map, result);
+    	return result;
+    }
+    
+private:
+    void permutation(int size, vector<int>& current,
+                     unordered_map<int, int>& map, vector<vector<int>>& result) {
+        if(size <= 0){
+            result.push_back(current);
+            return;
+        }
+        for(auto &i : map) {
+            if(i.second <= 0)
+                continue;
+            current.push_back(i.first);
+            i.second--;
+            permutation(size-1, current, map, result);
+            current.pop_back();
+            i.second++;
+        }
+                         
+    }  
+    
 */

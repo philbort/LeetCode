@@ -17,9 +17,17 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 
 class Solution {
 public:
-    // Algorithm from Wikipedia:
-    // https://en.wikipedia.org/wiki/Permutation
+    /* Algorithm from Wikipedia:
+       https://en.wikipedia.org/wiki/Permutation
+       This method can be used to generate all
+       permutations by keep calling it. But the
+       time complexity is obviously bad.
+    */
+    
     void nextPermutation(vector<int>& nums) {
+        if(nums.size() < 2)
+            return;
+            
         int k = -1;
         // For "1 2 3 8 7 6 5", k = 2
         for (int i = nums.size()-2; i>= 0; i--){

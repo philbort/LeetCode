@@ -37,20 +37,20 @@ private:
 		for (int i = ind; i < nums.size(); i++) {
 		    // Instead of only checking nums[ind] != nums[i]
 		    // no we have to check every number before i.
-            bool duplicate = false;
-	        if(i != ind){
+		    bool duplicate = false;
+                    // And since j = ind, j < i, i never equals ind
+            	    // we don't have to check that anymore
 	            for(int j = ind; j < i; j++) {
 	                if(nums[j] == nums[i]) {
 	                    duplicate = true;
 	                    break;
 	                }
 	            }
-	        }
-	        if(!duplicate) {
-		        swap( nums[ind],nums[i]);
-    			permutation(nums, ind+1, result);
-    			swap(nums[i], nums[ind]);
-	        }
+	            if(!duplicate) {
+	 	        swap( nums[ind],nums[i]);
+    		        permutation(nums, ind+1, result);
+    		        swap(nums[i], nums[ind]);
+	            }
 		}
 	}
 };

@@ -30,9 +30,7 @@ The longest increasing path is [3, 4, 5, 6]. Moving diagonally is not allowed.
 */
 
 class Solution {
-
 public: 
-	
     // Dynamic programming and DFS. O(mn) time and space 
     int longestIncreasingPath(vector<vector<int>>& matrix) {
         if (matrix.empty())  return 0;
@@ -48,8 +46,9 @@ public:
     }
 
 private:
-
     int dfs(vector<vector<int>>& matrix, vector<vector<int>> & dp, int i, int j) {
+        // If the dp value is not 0, we already checked the length starting
+        // from this point, no need to do it again, just use it.
         if(dp[i][j] > 0)
             return dp[i][j];
         int a = 0, b = 0, c = 0, d = 0;
@@ -63,6 +62,7 @@ private:
         // Be aware it's "n-1" here not "n"
         if(j < n - 1 && matrix[i][j+1] > matrix[i][j])
             d = dfs(matrix, dp, i, j+1);
+        // "+1" to include the current point
         dp[i][j] = max(max(a, b), max(c, d)) + 1;
         return  dp[i][j];
     }

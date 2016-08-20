@@ -21,11 +21,16 @@ public:
     int lengthOfLIS(vector<int>& nums) {
         if (nums.empty())   return 0;
         vector<int> dp(nums.size());
-        int result = INT_MIN;
+        // Result is at least 1
+        int result = 1;
         for (int i = 0; i < nums.size(); i++) {
+            // We have at least 1 for every number
             dp[i] = 1;
+            // Go throught all the numbers before the current
             for (int j = 0; j < i; j++){
+                // If they are smaller
                 if (nums[j] < nums[i])
+                    // Update the result
                     dp[i] = max(dp[i], dp[j] + 1);
             }
             result = max(result, dp[i]);
@@ -39,21 +44,21 @@ public:
 http://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/
 
     int lengthOfLIS(vector<int>& nums) {
-        if (nums.empty()) return 0;
-        vector<int> ends{nums[0]};
-        for (int num : nums) {
-            if (num > ends.back()) ends.push_back(num);
-            else {
-                int l = 0, r = ends.size() - 1;
-                while (l < r) {
-                    int m = l + (r - l) / 2;
-                    if (ends[m] < num) l = m + 1;
-                    else r = m;
-                }
-                ends[r] = num;
+    if (nums.empty()) return 0;
+    vector<int> ends{nums[0]};
+    for (int num : nums) {
+        if (num > ends.back()) ends.push_back(num);
+        else {
+            int l = 0, r = ends.size() - 1;
+            while (l < r) {
+                int m = l + (r - l) / 2;
+                if (ends[m] < num) l = m + 1;
+                else r = m;
             }
+            ends[r] = num;
         }
-        return ends.size();
     }
+    return ends.size();
+}
 
 */

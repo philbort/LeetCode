@@ -21,6 +21,7 @@ To take course 1 you should have finished course 0, and to take course 0 you sho
 */
 
 
+
 class Solution {
 public:
     /*  For DFS, it will first visit a node, then one neighbor of it, 
@@ -33,11 +34,14 @@ public:
         is to record the visited nodes in the current DFS visit.
     */
     bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
+        
+        // If no course to take or no prerequisites, of course we can finish
         if(!numCourses || prerequisites.empty())  
             return true;
         
         // multiset is faster than unordered_set here, why?
         unordered_map<int, multiset<int>> graph;
+        
         // All the visited nodes
         vector<bool> visited(numCourses, false);
         // All the visited nodes on the current path
@@ -91,8 +95,11 @@ public:
         hash tables with respect to it.
     */
     bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
+        
+        // If no course to take or no prerequisites, of course we can finish
         if(!numCourses || prerequisites.empty())  
             return true;
+            
         // Queue for zero indegrees
         queue<int> zeroInDegree;
         // Hash table for indegree and outdegree
@@ -103,9 +110,9 @@ public:
             outDegree[prerequisites[i].second].insert(prerequisites[i].first);
         }
         // Find if we have zeroInDegree, and put them in the queue
-        for (int i = 0; i < prerequisites.size(); i++) {
-            if(inDegree.find(prerequisites[i].second) == inDegree.end())
-                zeroInDegree.push(prerequisites[i].second);
+        for (int i = 0; i < numCourses; i++) {
+            if(inDegree.find(i) == inDegree.end())
+                zeroInDegree.push(i);
         }
         
         while(!zeroInDegree.empty()) {

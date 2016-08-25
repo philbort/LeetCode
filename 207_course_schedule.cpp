@@ -40,7 +40,7 @@ public:
             return true;
         
         // multiset is faster than unordered_set here, why?
-        unordered_map<int, multiset<int>> graph;
+        vector<unordered_set<int>> graph(numCourses);
         
         // All the visited nodes
         vector<bool> visited(numCourses, false);
@@ -61,7 +61,7 @@ public:
         return true;
     }
 private:
-    bool dfs_cycle(unordered_map<int, multiset<int>>& graph, int i,
+    bool dfs_cycle(vector<unordered_set<int>>& graph, int i,
                    vector<bool>& current, vector<bool>& visited) {
         // If we reach a node visited before, we don't have a cycle
         // Like Fibonacci recursion, make sure we don't search the 
@@ -71,9 +71,9 @@ private:
         // Set the current node to visited
         current[i] = visited[i] = true;
         // Go through all the nodes from the current nodes ("outdegree")
-        for(auto it = graph[i].begin(); it != graph[i].end(); it++) {
+        for(int node:  graph[i]) {
             // If this or any next node is on the current path, we have a cycle
-            if(current[*it] || dfs_cycle(graph, *it, current, visited))
+            if(current[node] || dfs_cycle(graph, node, current, visited))
                 return true;
         }
         
@@ -85,57 +85,4 @@ private:
         return false;
     }
     
-};
-
-class Solution2 {
-public:
-    /*  For BFS, we map all the indegree and outdegree edges, and we find the
-        nodes without any prerequisites (i.e., zeroInDegree). We start with 
-        zeroInDegree and we traverse all the nodes in the InDegree and OutDegree
-        hash tables with respect to it.
-    */
-    bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
-        
-        // If no course to take or no prerequisites, of course we can finish
-        if(!numCourses || prerequisites.empty())  
-            return true;
-            
-        // Queue for zero indegrees
-        queue<int> zeroInDegree;
-        // Hash table for indegree and outdegree
-        unordered_map<int, unordered_set<int>> inDegree, outDegree;
-        // Transform edge lists to adjacency lists
-        for (int i = 0; i < prerequisites.size(); i++) {
-            inDegree[prerequisites[i].first].insert(prerequisites[i].second);
-            outDegree[prerequisites[i].second].insert(prerequisites[i].first);
-        }
-        // Find if we have zeroInDegree, and put them in the queue
-        for (int i = 0; i < numCourses; i++) {
-            if(inDegree.find(i) == inDegree.end())
-                zeroInDegree.push(i);
-        }
-        
-        while(!zeroInDegree.empty()) {
-            // The current course
-            int course = zeroInDegree.front();
-            zeroInDegree.pop();
-            // Find all the courses require the current course
-            for (auto it = outDegree[course].begin(); it != outDegree[course].end(); it++) {
-                // Erase it from InDegree since we already took it
-                inDegree[*it].erase(course);
-                // If a course doesn't have any indegrees, put it in the queue
-                if(inDegree[*it].empty())
-                    zeroInDegree.push(*it);
-            }
-            // Erase the current course from outdegree
-            outDegree.erase(course);
-        }
-        
-        // If we still have outdegree, we hace a cycle
-        if(!outDegree.empty())
-            return false;
-            
-        // Othewsise we don't
-        return true;
-    }
 };

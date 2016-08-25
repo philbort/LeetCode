@@ -25,24 +25,36 @@ Another correct ordering is[0,2,1,3].
 
 class Solution {
 public:
+    // BFS, check 207_course_schedule for details
     vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
+        
         if(!numCourses)  
             return vector<int>();
             
         vector<int> result;
         
+        // graph with known size
+        vector<unordered_set<int>> graph(numCourses);
+        
         // Queue for zero indegrees
         queue<int> zeroInDegree;
-        // Hash table for indegree and outdegree
-        unordered_map<int, unordered_set<int>> inDegree, outDegree;
+        // Vector for indegrees
+        vector<int> InDegree(numCourses, 0);
+        
         // Transform edge lists to adjacency lists
         for (int i = 0; i < prerequisites.size(); i++) {
-            inDegree[prerequisites[i].first].insert(prerequisites[i].second);
-            outDegree[prerequisites[i].second].insert(prerequisites[i].first);
+            graph[prerequisites[i].second].insert(prerequisites[i].first);
         }
-        // Find if we have zeroInDegree, and put them in the queue
+        
+        // Count the indegrees for each course
         for (int i = 0; i < numCourses; i++) {
-            if(inDegree.find(i) == inDegree.end())
+            for (int node: graph[i])
+                InDegree[node]++;
+        }
+        
+        // Queue the courses with zero indegree
+        for (int i = 0; i < numCourses; i++) {
+            if (InDegree[i] == 0)
                 zeroInDegree.push(i);
         }
         
@@ -54,20 +66,20 @@ public:
             result.push_back(course);
             
             // Find all the courses require the current course
-            for (auto it = outDegree[course].begin(); it != outDegree[course].end(); it++) {
-                // Erase it from InDegree since we already took it
-                inDegree[*it].erase(course);
+            for (int node: graph[course]) {
+                // Indegree minus 1 for those courses
+                InDegree[node]--;
                 // If a course doesn't have any indegrees, put it in the queue
-                if(inDegree[*it].empty())
-                    zeroInDegree.push(*it);
+                if(InDegree[node] == 0)
+                    zeroInDegree.push(node);
             }
-            // Erase the current course from outdegree
-            outDegree.erase(course);
         }
         
-        // If we still have outdegree, we hace a cycle
-        if(!outDegree.empty())
-            return vector<int> ();
+        // If we still have indegrees, we hace a cycle
+        for (int i = 0; i < numCourses; i++) {
+            if (InDegree[i] > 0)
+                return vector<int> ();
+        }
             
         // Othewsise we don't
         return result;

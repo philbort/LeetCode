@@ -86,3 +86,43 @@ public:
     }
 
 };
+
+/*  DFS solution:
+
+class Solution {
+public:
+    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
+        if(!numCourses)  return vector<int> ();
+        
+        vector<int> result;
+        vector<unordered_set<int>> graph(numCourses);
+        vector<bool> visited(numCourses, false);
+        vector<bool> current(numCourses, false);
+        
+        for (int i = 0; i < prerequisites.size(); i++)
+            graph[prerequisites[i].second].insert(prerequisites[i].first);
+            
+        for (int i = 0; i < numCourses; i++) {
+            if(dfs_cycle(graph, i, current, visited, result))
+                return vector<int> ();
+        }
+        reverse(result.begin(), result.end());
+        return result;
+    }
+private:
+    bool dfs_cycle(vector<unordered_set<int>>& graph, int i,
+                   vector<bool>& visited, vector<bool>& current,
+                   vector<int> & result) {
+     if(visited[i])  return false;
+     current[i] = visited[i] = true;
+     for(int node: graph[i]) {
+         if(current[node] || dfs_cycle(graph, node, visited, current, result))
+            return true;
+     }  
+     result.push_back(i);
+     current[i] = false;
+     return false;
+   }
+};
+
+*/

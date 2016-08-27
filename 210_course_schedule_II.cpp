@@ -95,17 +95,23 @@ public:
         if(!numCourses)  return vector<int> ();
         
         vector<int> result;
+        // Hash table with known size
         vector<unordered_set<int>> graph(numCourses);
+        // Visited nodes
         vector<bool> visited(numCourses, false);
+        // Nodes on the current path
         vector<bool> current(numCourses, false);
         
+        // Transform edge lists to adjacency lists
         for (int i = 0; i < prerequisites.size(); i++)
             graph[prerequisites[i].second].insert(prerequisites[i].first);
-            
+        
+        // Go through all the nodes    
         for (int i = 0; i < numCourses; i++) {
             if(dfs_cycle(graph, i, current, visited, result))
                 return vector<int> ();
         }
+        // Since we pushed the nodes after the recursion, we have to reverse
         reverse(result.begin(), result.end());
         return result;
     }
@@ -116,9 +122,11 @@ private:
      if(visited[i])  return false;
      current[i] = visited[i] = true;
      for(int node: graph[i]) {
-         if(current[node] || dfs_cycle(graph, node, visited, current, result))
+         if(current[node] || 
+            dfs_cycle(graph, node, visited, current, result))
             return true;
      }  
+     // Note that the nodes are pushed after the recursion
      result.push_back(i);
      current[i] = false;
      return false;

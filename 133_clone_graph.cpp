@@ -36,29 +36,45 @@ Visually, the graph looks like the following:
  * };
  */
 
+/**
+ * Definition for undirected graph.
+ * struct UndirectedGraphNode {
+ *     int label;
+ *     vector<UndirectedGraphNode *> neighbors;
+ *     UndirectedGraphNode(int x) : label(x) {};
+ * };
+ */
+ 
 class Solution {
 public:
+    // BFS solution:
     UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
         if(!node)    return NULL;
-        unordered_map<UndirectedGraphNode*, UndirectedGraphNode*> map;
-        queue<UndirectedGraphNode*> unvisited;
+        queue<UndirectedGraphNode*> toVisit;
         map[node] = new UndirectedGraphNode(node->label);
-        unvisited.push(node);
-        while(!unvisited.empty()) {
-            UndirectedGraphNode* current = unvisited.front();
-            unvisited.pop();
+        toVisit.push(node);
+        while(!toVisit.empty()) {
+            UndirectedGraphNode* current = toVisit.front();
+            toVisit.pop();
+            // Check all the neighbors
             for(int i = 0; i < current->neighbors.size(); i++) {
+                // If they haven't been cloned
                 if(map.find(current->neighbors[i]) == map.end()) {
+                    // Clone it
                     map[current->neighbors[i]] = new UndirectedGraphNode(current->neighbors[i]->label);
-                    unvisited.push(current->neighbors[i]);
+                    // Add to the queue
+                    toVisit.push(current->neighbors[i]);
                 }
+                // Add it to the neighbor list of the current node
                 map[current]->neighbors.push_back(map[current->neighbors[i]]);
             }
         }
         return map[node];
     }
+private:
+    // Hash table maps each node in the original graph to its cloned version 
+    unordered_map<UndirectedGraphNode*, UndirectedGraphNode*> map;
 };
-
 
 
 /* DFS solution:
@@ -78,8 +94,5 @@ public:
         }
         return map[node];
     }
-private:
-    // Hash table to track the already cloned nodes
-    unordered_map<UndirectedGraphNode*, UndirectedGraphNode*> map;
     
 */

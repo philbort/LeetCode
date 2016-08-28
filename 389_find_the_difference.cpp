@@ -38,3 +38,12 @@ public:
         return '\0';
     }
 };
+
+/*  Bit manipulation:
+    char findTheDifference(string s, string t) {
+        int result = 0;
+        for (char c: s)   result ^= (int) c;
+        for (char c: t)   result ^= (int) c;
+        return (char) result;
+    }
+*/

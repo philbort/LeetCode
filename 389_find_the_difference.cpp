@@ -41,9 +41,9 @@ public:
 
 /*  Bit manipulation:
     char findTheDifference(string s, string t) {
-        int result = 0;
-        for (char c: s)   result ^= (int) c;
-        for (char c: t)   result ^= (int) c;
-        return (char) result;
+        char result = 0;
+        for (char c: s)   result ^= c;
+        for (char c: t)   result ^= c;
+        return result;
     }
 */

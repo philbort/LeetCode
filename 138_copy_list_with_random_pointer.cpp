@@ -9,7 +9,71 @@ Return a deep copy of the list.
 */
 
 class Solution {
+    
 public:
+
+    // O(n) time and O(1) space solution
+    RandomListNode *copyRandomList(RandomListNode *head) {
+        if(!head)   return NULL;
+        RandomListNode *newHead = NULL;
+        // Pointer to the nodes in the original list
+        RandomListNode *orig_ptr = head; 
+        // Pointer the the nodes in the copy list
+        RandomListNode *copy_ptr = NULL;
+        
+        // Duplicate the nodes in the original list
+        while (orig_ptr)
+        {
+            copy_ptr = new RandomListNode (orig_ptr->label);
+            copy_ptr->next = orig_ptr->next;
+            orig_ptr->next = copy_ptr;
+            orig_ptr = copy_ptr->next;
+        }
+        
+        // Link the random nodes
+        orig_ptr = head;
+        while (orig_ptr)
+        {
+            copy_ptr = orig_ptr->next;
+            if (orig_ptr->random)
+                copy_ptr->random = orig_ptr->random->next;
+            orig_ptr = copy_ptr->next;
+        }
+        
+        // Remove the links between original and copy lists
+        orig_ptr = head;
+        newHead = head->next;
+        while (orig_ptr)
+        {
+            copy_ptr = orig_ptr->next;
+            orig_ptr->next = copy_ptr->next;
+            orig_ptr = orig_ptr->next;
+            if (orig_ptr)
+                copy_ptr->next = orig_ptr->next;
+        }
+        return newHead;
+    }
+
+};
+
+
+/*  DFS and BFS solutions similar to clone graph:
+
+
+    DFS solution:
+
+    RandomListNode *copyRandomList(RandomListNode *head) {
+        if(!head)   return NULL;
+        if(map.find(head) == map.end()) {
+            map[head] = new RandomListNode(head->label);
+            map[head]->next = copyRandomList(head->next);
+            map[head]->random = copyRandomList(head->random);
+        }
+        return map[head];
+    }
+
+
+
     // BFS solution:
     RandomListNode *copyRandomList(RandomListNode *head) {
         if(!head)   return NULL;
@@ -42,18 +106,5 @@ public:
     }
 private:
     unordered_map<RandomListNode*, RandomListNode*> map;
-};
-
-/* DFS solution:
-
-    RandomListNode *copyRandomList(RandomListNode *head) {
-        if(!head)   return NULL;
-        if(map.find(head) == map.end()) {
-            map[head] = new RandomListNode(head->label);
-            map[head]->next = copyRandomList(head->next);
-            map[head]->random = copyRandomList(head->random);
-        }
-        return map[head];
-    }
 
 */

@@ -42,35 +42,57 @@ return [3, 4]
 
 class Solution {
 public:
+    // Topological sort:
+    // The idea is to find and remove the leafs (degree= 1) and approach the
+    // root (i.e., opposite of the leaf)
+
+    // time: O(V), space: O(V+E) 
     vector<int> findMinHeightTrees(int n, vector<pair<int, int>>& edges) {
         vector<int> leaf;
         if(!n)  return leaf;
         if(n == 1)  { leaf.push_back(0); return leaf; }
-        vector<unordered_set<int>> map(n, unordered_set<int>());
+        // Hash table with known size
+        vector<unordered_set<int>> map(n);
+        // Edge list to adjacent list
         for (int i = 0; i < edges.size(); i++) {
             map[edges[i].first].insert(edges[i].second);
             map[edges[i].second].insert(edges[i].first);
         }
-        vector<int> degree(n);
-        for (int i = 0; i < n; i++)
-            degree[i] = map[i].size();
+        
+        // Add all the leafs
         for (int i = 0; i < n; i++) {
-            if(degree[i] == 1)
+            if(map[i].size() == 1)
                 leaf.push_back(i);
         }
-        while(true) {
+        
+        // Number of the nodes
+        int num = n;
+        
+        // Remove and find new leafs
+        // Since a tree has no cycle, we can have at most 2 roots
+        while(num > 2) {
+            // Next set of leafs
             vector<int> next;
+            // For every leaf
             for (int node: leaf) {
-                degree[node]--;
-                for (int neighbor: map[node]){
-                    if( --degree[neighbor]== 1) {
+                // Find its neighbor
+                // Although there is only one neighbor here
+                // we have to use an iterator
+                // as "int neighbor = map[node]" doesn't work
+                for (int neighbor: map[node]) {
+                    // Erase the leaf from its neighbor's adjacent list
+                    map[neighbor].erase(node);
+                    // Reduce neighbor's degree, if it's 1, it's a new leaf
+                    if( map[neighbor].size()== 1) {
                         next.push_back(neighbor);
                     }
                 }
             }
-            if(next.empty())  return leaf;
+            // Update the number of remaining nodes
+            num -= leaf.size();
+            // Update the new leaf for the next iteration
             leaf = next;
         }
-        
+        return leaf;
     }
 };

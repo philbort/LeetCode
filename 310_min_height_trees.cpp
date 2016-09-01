@@ -45,14 +45,15 @@ public:
     // Topological sort:
     // The idea is to find and remove the leafs (degree= 1) and approach the
     // root (i.e., opposite of the leaf)
-
-    // time: O(V), space: O(V+E) 
     vector<int> findMinHeightTrees(int n, vector<pair<int, int>>& edges) {
+        
+        if(!n)  return vector<int>();
+        if(n == 1)  return {0};
         vector<int> leaf;
-        if(!n)  return leaf;
-        if(n == 1)  { leaf.push_back(0); return leaf; }
+        
         // Hash table with known size
         vector<unordered_set<int>> map(n);
+        
         // Edge list to adjacent list
         for (int i = 0; i < edges.size(); i++) {
             map[edges[i].first].insert(edges[i].second);

@@ -9,8 +9,30 @@ You may assume that the array is non-empty and the majority element always exist
 */
 
 class Solution {
-
 public:
+    // Time: O(n)  Space: O(1)
+    int majorityElement(vector<int>& nums) {
+        int majority = nums[0];
+        int count = 1;
+        for(int i = 1; i < nums.size(); i++) {
+            if(count == 0) {
+                majority = nums[i];
+                count = 1;
+            }
+            else if(majority == nums[i])
+                count++;
+            else
+                count--;
+            if(count > nums.size()/2)
+                return majority;
+        }
+        return majority;
+    }
+};
+
+/*
+
+O(nlogn) solution:
 
     int majorityElement(vector<int>& nums) {
 
@@ -18,27 +40,5 @@ public:
 
         return nums[nums.size()/2];
     }
-};
-
-/*
-
-O(n) solution:
-
-public class Solution {
-    public int majorityElement(int[] num) {
-
-        int major=num[0], count = 1;
-        for(int i=1; i<num.length;i++){
-            if(count==0){
-                count++;
-                major=num[i];
-            }else if(major==num[i]){
-                count++;
-            }else count--;
-
-        }
-        return major;
-    }
-}
 
 */

@@ -17,11 +17,12 @@ You should return the following matrix:
 */
 
 class Solution {
-
 public:
-
+    // Time: O(m*n)
+    // Space: O(1)
     vector<vector<int>> generateMatrix(int n) {
-        if(n <= 0)  return vector<vector<int>> ();
+        if(n <= 0)  return {};
+        
         int left = 0, right = n - 1, up = 0, down = n -1;
         vector<vector<int>> matrix(n,vector<int>(n));
         int k = 1;

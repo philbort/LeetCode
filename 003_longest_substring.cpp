@@ -16,9 +16,10 @@ Note that the answer must be a substring, "pwke" is a subsequence and not a subs
 */
 
 class Solution {
-
+    
 public:
-	
+    // Time: O(n)
+    // Space: O(1)
     int lengthOfLongestSubstring(string s) {
         
         /* 256 is the length of the ascii table.

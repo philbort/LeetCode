@@ -11,17 +11,13 @@ However, you may not engage in multiple transactions at the same time (ie, you m
 */
 
 class Solution {
-
 public:
-
+    // Time: O(n)
+    // Space: O(1)
     int maxProfit(vector<int>& prices) {
-
-        int res = 0, n = prices.size();
-
-        // Simply add all the positive differences together
-        for (int i = 0; i < n-1; i++)
-            res += max(0, prices[i+1] - prices[i]);
-        
-        return res;
+        int maxPro = 0;
+        for (int i = 1; i < prices.size(); i++)
+            maxPro += max(0, prices[i] - prices[i-1]);
+        return maxPro;
     }
 };

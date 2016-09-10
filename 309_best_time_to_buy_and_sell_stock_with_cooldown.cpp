@@ -18,11 +18,7 @@ transactions = [buy, sell, cooldown, buy, sell]
 */
 
 
-
-/* Four states are used for the dp: 
-buy, sell, coolDown and noOp, 
-where noOp happens between buy and sell, 
-coolDown happens between sell and buy.
+/* Four states are used for the dp: buy, sell, coolDown and hold, where hold happens between buy and sell, coolDown happens between sell and buy.
 
 It is actually much more straight forward if you use O(n) space.
 
@@ -30,33 +26,27 @@ buy[i] -- buy stock i
 
 sell[i] -- sell stock i
 
-noOp[i] -- no operation for stock i, but have one stock at hand
+hold[i] -- no operation for stock i, but have one stock at hand
 
 coolDown[i] -- no operation for stock i, and have no stock at hand.
 
-Then the update works as:
-buy[i] = coolDown[i-1]-prices[i], 
-coolDown[i] = max(coolDown[i-1], sell[i-1]), 
-noOp[i] = max[noOp[i-1], buy[i-1]]], and
-sell[i] = max(noOp[i-1], buy[i-1]) + prices[i].
+Then the update works as buy[i] = coolDown[i-1]-prices[i], coolDown[i] = max(coolDown[i-1], sell[i-1]), hold[i] = max[hold[i-1], buy[i-1]]] and sell[i] = max(hold[i-1], buy[i-1]) + prices[i].
 
 The constant space solution readily follows this since current states for price i only depends on previous states for price i-1.
 */
 
 class Solution {
-
 public:
-
+    // Time: O(n)
+    // Space: O(1)
     int maxProfit(vector<int>& prices) {
-    
-        int buy = INT_MIN, noOp = INT_MIN;
+        int buy = INT_MIN, hold = INT_MIN;
         int coolDown = 0, sell = 0;
-    
         for (int p : prices) {
-            noOp = max(noOp, buy);
+            hold = max(hold, buy);
             buy = coolDown - p;
             coolDown = max(coolDown, sell);
-            sell = noOp + p;
+            sell = hold + p;
         }
         return max(coolDown, sell);
     }

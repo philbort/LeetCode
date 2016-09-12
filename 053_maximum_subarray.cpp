@@ -11,6 +11,8 @@ the contiguous subarray [4,−1,2,1] has the largest sum = 6.
 
 class Solution {
 public:
+    // Time: O(n)
+    // Space: O(1)
     int maxSubArray(vector<int>& nums) {
 
         int max_sum_so_far = nums[0];

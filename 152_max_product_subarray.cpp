@@ -12,6 +12,8 @@ the contiguous subarray [2,3] has the largest product = 6.
 class Solution {
 
 public:
+    // Time: O(n)
+    // Space: O(1)
     int maxProduct(vector<int>& nums) {
         if(nums.empty())    return 0;
         int max_sum_so_far = nums[0];

@@ -82,29 +82,27 @@ ReservoirSample(S[1..n], R[1..k])
         R[j] := S[i]
 you need to remember the range [ 0, i ] should be inclusive.
 
+
 class Solution {
-private:
-    ListNode* head;
 public:
-     @param head The linked list's head. Note that the head is guanranteed to be not null, so it contains at least one node.
+
     Solution(ListNode* head) {
-        this->head = head;
+        nodes = head;
     }
     
-    Returns a random node's value. 
     int getRandom() {
-        int res = head->val;
-        ListNode* node = head->next;
-        int i = 2;
-        while(node){
-            int j = rand()%i;
-            if(j==0)
-                res = node->val;
-            i++;
-            node = node->next;
+        int result, cnt = 1;
+        ListNode* head = nodes;
+        while(head) {
+            if(rand()%cnt == 0)
+                result = head->val;
+            cnt++;
+            head = head->next;
         }
-        return res;
+        return result;
     }
+private:
+    ListNode* nodes;
 };
 
 */

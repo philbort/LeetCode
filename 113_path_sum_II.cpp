@@ -32,34 +32,25 @@ return
  */
 
 class Solution {
-
 public:
-
+    // Time: O(n)
+    // Space: O(n) or O(logn) ??
     vector<vector<int>> pathSum(TreeNode* root, int sum) {
-
         vector<vector<int>> result;
         vector<int> current;
-
         Helper(root, result, sum, current);
-        
         return result;
     }
-
 private:
-
-    void Helper(TreeNode* root, vector<vector<int>> & result, int sum, vector<int> current) {
-
+    void Helper(TreeNode* root, vector<vector<int>> & result, int sum, vector<int>& current) {
         if (!root)  return;
-
         current.push_back(root->val);
-
         if (sum == root->val && !root->left && !root->right ) {
             result.push_back(current);
-            return;
         }
-
         Helper(root->left, result, sum - root->val, current);
         Helper(root->right, result, sum - root->val, current);
+        current.pop_back();
     }
 };
 

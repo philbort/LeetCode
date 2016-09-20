@@ -12,6 +12,8 @@ Note: You can only move either down or right at any point in time.
 class Solution {
 
 public:
+    // Time: O(m*n)
+    // Space: O(n)
     int minPathSum(vector<vector<int>>& grid) {
         if (grid.empty())   return 0;
         // Initialize a row

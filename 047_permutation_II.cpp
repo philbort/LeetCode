@@ -16,6 +16,8 @@ For example,
 
 class Solution {
 public:
+    // Time: O(n)
+    // Space: O(n)
     vector<vector<int>> permuteUnique(vector<int>& nums) {
         sort(nums.begin(), nums.end());
     	vector<vector<int>> result;

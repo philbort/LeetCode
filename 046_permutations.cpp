@@ -12,6 +12,8 @@ For example,
 
 class Solution {
 public:
+    // Time: O(n)
+    // Space: O(n)
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> result;
         if (nums.empty())   return result;

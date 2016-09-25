@@ -11,7 +11,8 @@ Each time you can either climb 1 or 2 steps. In how many distinct ways can you c
 class Solution {
 
 public:
-    // O(1) space
+    // Time: O(n)
+    // Space: O(1)
     int climbStairs(int n) {
         if ( n < 2 )
             return 1;

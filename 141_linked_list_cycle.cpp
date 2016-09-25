@@ -19,13 +19,11 @@ Can you solve it without using extra space?
  */
 
 class Solution {
-
 public:
-
+    // Time: O(n)
+    // Space: O(1)
     bool hasCycle(ListNode *head) {
-
         ListNode *slow = head, *fast = head;
-        
         while(fast && fast->next)
         {
             slow = slow->next;

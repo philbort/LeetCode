@@ -18,7 +18,8 @@ Here are few examples.
 class Solution {
 
 public:
-	
+    // Time: O(logn)
+    // Space: O(1)
     int searchInsert(vector<int>& nums, int target) {
         
         // Binary search

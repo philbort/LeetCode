@@ -17,6 +17,8 @@ return [3, 4].
 class Solution {
 	
 public:
+    // Time: O(logn)
+    // Space: O(1)
     vector<int> searchRange(vector<int>& nums, int target) {
         int left = 0, right = nums.size() - 1;
         vector<int> result(2, -1);

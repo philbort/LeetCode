@@ -21,11 +21,10 @@ You should make use of what you have produced already.
 
 class Solution {
 public:
+    // Time: O(n)
+    // Space: O(1)
     vector<int> countBits(int num) {
-        
-        // Initialize everything to zeros
         vector<int> result(num+1,0);
-        
         for(int i = 1; i <= num; i++)
         {
             /* Starts with 1, every number has 

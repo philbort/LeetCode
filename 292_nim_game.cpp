@@ -15,11 +15,10 @@ no matter 1, 2, or 3 stones you remove, the last stone will always be removed by
 */
 
 class Solution {
-
 public:
-
+    // Time: O(1)
+    // Space: O(1)
     bool canWinNim(int n) {
-
         return ( n%4 );
     }
 };

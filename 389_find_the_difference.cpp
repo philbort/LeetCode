@@ -24,6 +24,8 @@ Explanation:
 
 class Solution {
 public:
+    // Time: O(n)
+    // Space: O(1)
     char findTheDifference(string s, string t) {
         // Hash table for known size
         vector<int> map(26, 0);
@@ -40,6 +42,8 @@ public:
 };
 
 /*  Bit manipulation:
+    // Time: O(n)
+    // Space: O(1)
     char findTheDifference(string s, string t) {
         char result = 0;
         for (char c: s)   result ^= c;

@@ -12,26 +12,23 @@ Note that 1 is typically treated as an ugly number.
 */
 
 class Solution {
-	
 public:
-
+    // Time: O(n)
+    // Space: O(n)
     int nthUglyNumber(int n) {
-        
         vector<int> UglyNumber(n);
         UglyNumber[0] = 1;
         int Number2 = 0, Number3 = 0, Number5 = 0;
         int num;
         for (int i = 1; i < n; i++)
         {
-            num = min(UglyNumber[Number2] * 2, min(UglyNumber[Number3]*3, UglyNumber[Number5]*5));
-            if(num == UglyNumber[Number2] * 2)
-                Number2++;
-            if ( num == UglyNumber[Number3]*3)
-                Number3++;
-            if ( num == UglyNumber[Number5]*5)
-                Number5++;
+            num = min(UglyNumber[Number2] * 2, min(UglyNumber[Number3] * 3, UglyNumber[Number5] * 5));
+            if (num == UglyNumber[Number2] * 2)  Number2++;
+            if (num == UglyNumber[Number3] * 3)  Number3++;
+            if (num == UglyNumber[Number5] * 5)  Number5++;
             UglyNumber[i] = num;
         }
         return UglyNumber[n-1];
     }
 };
+

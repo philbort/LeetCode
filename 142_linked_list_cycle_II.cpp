@@ -23,6 +23,8 @@ Can you solve it without using extra space?
 class Solution {
 	
 public:
+    // Time: O(n)
+    // Space: O(1)
     ListNode *detectCycle(ListNode *head) {
         if(!head)
             return NULL;

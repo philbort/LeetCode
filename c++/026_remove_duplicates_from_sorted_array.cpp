@@ -17,6 +17,8 @@ It doesn't matter what you leave beyond the new length.
 class Solution {
     
 public:
+    // Time: O(n)
+    // Space: O(1)
     int removeDuplicates(vector<int>& nums) {
         int size = nums.size();
         if (size < 2) 

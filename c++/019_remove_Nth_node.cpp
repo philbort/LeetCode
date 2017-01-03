@@ -25,6 +25,8 @@ struct ListNode {
 
 class Solution {
 public:
+    // Time: O(n)
+    // Space: O(1)
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         ListNode *fast = head, *slow = head;
         for (int i = 0; i < n; i++)

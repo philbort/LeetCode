@@ -18,6 +18,8 @@ The new list should be made by splicing together the nodes of the first two list
  */
 class Solution {
 public:
+    // Time: O(n)
+    // Space: O(1)
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
         if (!l1)
             return l2;

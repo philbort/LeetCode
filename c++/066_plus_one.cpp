@@ -11,7 +11,8 @@ The digits are stored such that the most significant digit is at the head of the
 class Solution {
 
 public:
-	
+    // Time: O(n)
+    // Space: O(1)
     vector<int> plusOne(vector<int>& digits) {
         int n = digits.size();
         for (int i = n-1; i >= 0; i--)

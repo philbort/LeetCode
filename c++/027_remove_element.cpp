@@ -19,7 +19,8 @@ Your function should return length = 2, with the first two elements of nums bein
 class Solution {
 
 public:
-	
+    // Time: O(n)
+    // Space: O(1)
     int removeElement(vector<int>& nums, int val) {
         int left = 0, right = nums.size() - 1;
         while( left <= right )
@@ -37,6 +38,8 @@ public:
 
 
 /*
+    // Time: O(n)
+    // Space: O(1)
     int removeElement(vector<int>& nums, int val) {
         int cnt = 0;
         for (int i = 0; i < nums.size();i++)

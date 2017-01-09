@@ -10,15 +10,12 @@ Could you do it without using any loop / recursion?
 */
 
 class Solution {
-
 public:
-	
+    // Time: O(1)
+    // Space: O(1)
     bool isPowerOfThree(int n) {
-        
         double ans = log10(n)/log10(3);
-        
         return ans == (int) ans;
-        
     }
 };
 

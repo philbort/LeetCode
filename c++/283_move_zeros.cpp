@@ -12,20 +12,17 @@ Minimize the total number of operations.
 
 */
 
-class Solution {
-
+class Solution 
 public:
-
+    // Time: O(n)
+    // Space: O(1)
     void moveZeroes(vector<int>& nums) {
-
         int j = 0, n = nums.size();
-
         // fill the non-zeros first
         for (int i = 0; i < n; i++) {
             if (nums[i] != 0)
                 nums[j++] = nums[i];
         }
-
         // and fill the rest with zeros
         for (;j < n; j++)
             nums[j] = 0;

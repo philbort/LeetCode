@@ -52,6 +52,8 @@ public:
 /*
 class Solution {
 public:
+    // Time: O(n)
+    // Space: O(n)
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
         if(l1 == NULL) return l2;
         if(l2 == NULL) return l1;

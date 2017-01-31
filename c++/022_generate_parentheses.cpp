@@ -11,10 +11,11 @@ For example, given n = 3, a solution set is:
 */
 
 
-// WTF
 
 class Solution {
 public:
+    // Time: O(n)
+    // Space: O(n)
     vector<string> generateParenthesis(int n) {
         vector<string> ret;
         helper(ret, "", n, n);

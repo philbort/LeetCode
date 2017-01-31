@@ -14,6 +14,8 @@ Your algorithm should run in O(n) time and uses constant space.
 
 class Solution {
 public:
+    // Time: O(n)
+    // Space: O(1)
     int firstMissingPositive(vector<int>& nums) {
         // Swap the values to the correct indices
         for(int i = 0; i < nums.size(); i++) {

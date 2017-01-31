@@ -12,7 +12,8 @@ The brackets must close in the correct order, "()" and "()[]{}" are all valid bu
 class Solution {
 
 public:
-
+    // Time: O(n)
+    // Space: O(n)
     bool isValid(string s) {
     	
         int n = s.size();

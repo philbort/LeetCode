@@ -13,7 +13,8 @@ Note: You may not slant the container.
 class Solution {
 
 public:
-
+    // Time: O(n)
+    // Space: O(1)
     int maxArea(vector<int>& height) {
         int i = 0, j = height.size()-1;
         if ( j < 1 )
@@ -33,7 +34,8 @@ public:
 };
 
 /* Brute force:
-
+    // Time: O(n^2)
+    // Space: O(1)
     int maxArea(vector<int>& height) {
         int n = height.size();
         if ( n < 2 )

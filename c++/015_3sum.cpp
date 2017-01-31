@@ -20,7 +20,8 @@ The solution set must not contain duplicate triplets.
 class Solution {
 
 public:
-
+    // Time: O(nlogn)
+    // Space: O(1)
     vector<vector<int>> threeSum(vector<int>& nums) {
 
         vector<vector<int>> result;
@@ -66,12 +67,12 @@ public:
                     // skip the same values for second
                     while(second<third && nums[second] == triplet[1])
                         second++;
-                    // skip the same values for thid
+                    // skip the same values for third
                     while(second<third && nums[third] == triplet[2])
                         third--;
                 }
             }
-            /* skip the same values for third,have to move the first 
+            /* skip the same values for first,have to move the first 
                till we couldn't find a second and a third
                think as S = {0,0,0,0,0,0,0,0}
             */ 

@@ -18,11 +18,10 @@ return 5.
 class Solution {
 
 public:
-
+    // Time: O(n)
+    // Space: O(1)
     int lengthOfLastWord(string s) {
-
         int result = 0;
-
         for(int n = s.size()-1; n>=0; n--)
         {
             if(s[n] != ' ')

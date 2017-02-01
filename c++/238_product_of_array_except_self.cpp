@@ -20,6 +20,8 @@ public:
        plus a right to left pass of everything on the right
        side
     */
+    // Time: O(n)
+    // Space: O(1)
     vector<int> productExceptSelf(vector<int>& nums) {
         
         int n = nums.size();

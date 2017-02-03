@@ -14,6 +14,8 @@ the subarray [4,3] has the minimal length under the problem constraint.
 class Solution {
 
 public:
+    // Time: O(n)
+    // Space: O(1)
     int minSubArrayLen(int s, vector<int>& nums) {
         if (nums.empty())   return 0;
         int min_len = INT_MAX;

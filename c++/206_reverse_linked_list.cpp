@@ -9,6 +9,8 @@
 class Solution {
 public:
     // Iterative
+    // Time: O(n)
+    // Space: O(1)
     ListNode* reverseList(ListNode* head) {
         struct ListNode *current, *prev, *next;
         current = head;
@@ -26,6 +28,8 @@ public:
 
 /*    
     // Recursive
+    // Time: O(n)
+    // Space: O(n)
     ListNode* reverseList(ListNode* head) {
         if ( !head || !(head->next) )
             return head;

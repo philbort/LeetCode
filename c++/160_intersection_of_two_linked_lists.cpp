@@ -34,6 +34,8 @@ Your code should preferably run in O(n) time and use only O(1) memory.
  */
 class Solution {
 public:
+    // Time: O(n)
+    // Space: O(n)
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         if(!headA||!headB)
             return NULL;

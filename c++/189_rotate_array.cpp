@@ -10,6 +10,8 @@ For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,
 
 class Solution {
 public:
+    // Time: O(n)
+    // Space: O(1)
     void rotate(vector<int>& nums, int k) {
         int n = nums.size();
         if( n < 2 || k == 0 || k%n == 0)

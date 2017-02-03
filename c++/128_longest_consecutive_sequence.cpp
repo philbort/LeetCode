@@ -14,6 +14,8 @@ Your algorithm should run in O(n) complexity.
 
 class Solution {
 public:
+    // Time: O(n)
+    // Space: O(n)
     int longestConsecutive(vector<int>& nums) {
         // Get all the unique values into a set
         unordered_set<int> set(nums.begin(), nums.end());

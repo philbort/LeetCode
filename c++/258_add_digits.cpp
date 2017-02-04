@@ -16,11 +16,10 @@ Could you do it without any loop/recursion in O(1) runtime?
 class Solution {
 
 public:
-
+    // Time: O(1)
+    // Space: O(1)
     int addDigits(int num) {
-    	
         int result = num % 9;
-        
         return ( result == 0 && num > 0 ? 9 : result);
     }
 };

@@ -20,12 +20,14 @@ Note: If there are several possible values for h, the maximum one is taken as th
 class Solution {
 
 public:
-	
+
+    // Time: O(n)
+    // Space: O(n)
     int hIndex(vector<int>& citations) {
         
         int size = citations.size();
         if(!size)   return 0;
-        
+  
         /* hIndex can only be between 0
            and size, so let's hash it
         */

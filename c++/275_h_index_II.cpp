@@ -9,7 +9,8 @@ Follow up for H-Index: What if the citations array is sorted in ascending order?
 class Solution {
 
 public:
-
+    // Time: O(logn)
+    // Space: O(1)
     int hIndex(vector<int>& citations) {
     	
         int size = citations.size();

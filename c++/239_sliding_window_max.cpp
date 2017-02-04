@@ -26,6 +26,8 @@ You may assume k is always valid, ie: 1 ≤ k ≤ input array's size for non-emp
 class Solution {
 	
 public:
+    // Time: O(n)
+    // Space: O(n)
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         if (nums.empty() || !k )  return vector<int> ();
         // Use a monotonic deque to store the index (not the actual number)

@@ -22,7 +22,8 @@ return false.
 class Solution {
 
 public:
-
+    // Time: O(n)
+    // Space: O(1)
     bool increasingTriplet(vector<int>& nums) {
     	
         /* Keep updating the small and mid values,

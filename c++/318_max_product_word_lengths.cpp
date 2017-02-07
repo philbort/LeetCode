@@ -26,12 +26,11 @@ No such pair of words.
 class Solution {
 	
 public:
-
+    // Time: O(n^2)
+    // Space: O(n)
     int maxProduct(vector<string>& words) {
-        
         if (words.size() < 2)
             return 0;
-            
         int ans = 0, n = words.size();
         vector<int> bitmap(n, 0);  // or long int ???
         

@@ -15,7 +15,8 @@ Could you do this in-place?
 class Solution {
 
 public:
-	
+    // Time: O(n^2)
+    // Space: O(1)
     void rotate(vector<vector<int>>& matrix) {
         int n = matrix.size();
         if (n < 2)
